@@ -1,0 +1,82 @@
+﻿@model IEnumerable<VersionTwo.Models.Vlog>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid" id="bg-video">
+    <div class="row">
+        <div class="col">
+            <h2 class="pt-5" style="color: #fff;">one stop shop for all your detailling needs.</h2>
+            <div class="pt-3">
+                <p class="fw-light">
+                    <a class="btn btn-md btn-outline-success border-3" asp-area="" asp-controller="CallBack" asp-action="Create">request a call back</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="embed-container">
+                <iframe src="https://www.youtube.com/embed/vV0fA9trWCo" frameborders="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <p class="mb-0 lead fw-bold">World of Detailers.</p>
+    <p class="fw-lighter">
+        Learn from the worlds best detailers
+    </p>
+    <div class="row">
+        @if (Model != null )
+        {
+            @foreach (Vlog vlog in Model) {
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    @* <img class="card-img-top" src="@Html.DisplayFor(modelItem => vlog.VideoUrl)" alt="Card image cap"> *@
+                    <div class="card-body">
+                        <p class="">@Html.DisplayFor(modelItem => vlog.Title)</p>
+                        
+                        
+                        <a class="btn btn-md btn-primary" asp-controller="Vlog" asp-action="Details" asp-route-id="@vlog.Id">Watch</a>
+                    </div>
+                </div>
+                
+            </div>
+            }
+        } else {
+            <h4>Model Returned null!!</h4>
+        }
+        
+    </div>
+</div>
+
+
+<style>
+    #bg-video {
+        background: lightgrey no-repeat no-repeat center;
+        position: relative;
+        background-size: cover;
+        height: 45vh;
+    }
+
+    .embed-container {
+        position: relative;
+        height: 35vh;
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    .embed-container iframe, .embed-container object .embed-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
